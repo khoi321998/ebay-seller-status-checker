@@ -1,25 +1,27 @@
 {
     "$schema": "https://apify.com/schemas/v1/input.ide.json",
-    "title": "CheerioCrawler Template",
+    "title": "eBay Seller Active Checker",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "startUrls": {
-            "title": "Start URLs",
+        "sellerUrls": {
+            "title": "Seller URLs",
             "type": "array",
-            "description": "URLs to start with.",
-            "editor": "requestListSources",
+            "description": "eBay seller store URLs to check, e.g. https://www.ebay.com/str/ronronnerxxm",
+            "editor": "stringList",
             "prefill": [
-                {
-                    "url": "https://crawlee.dev"
-                }
+                "https://www.ebay.com/str/ronronnerxxm",
+                "https://www.ebay.com/str/bbazqzv"
             ]
         },
-        "maxRequestsPerCrawl": {
-            "title": "Max Requests per Crawl",
+        "maxConcurrency": {
+            "title": "Max Concurrency",
             "type": "integer",
-            "description": "Maximum number of requests that can be made by this crawler.",
-            "default": 100
+            "description": "Maximum parallel checks. Keep low to avoid eBay anti-bot.",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 20
         }
-    }
+    },
+    "required": ["sellerUrls"]
 }
